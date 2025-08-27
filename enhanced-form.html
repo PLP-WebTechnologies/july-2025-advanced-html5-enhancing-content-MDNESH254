@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Healthy Lifestyle Hub</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8fffe;
+        }
+
+        /* Header & Navigation */
+        header {
+            background: linear-gradient(135deg, #2c7f7b, #4a9b8f);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #a8e6cf;
+        }
+
+        /* Mobile Navigation Toggle */
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+        }
+
+        .nav-toggle span {
+            width: 25px;
+            height: 3px;
+            background: white;
+            margin: 3px 0;
+            transition: 0.3s;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        section {
+            margin-bottom: 3rem;
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        h1, h2 {
+            color: #2c7f7b;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            border-bottom: 3px solid #a8e6cf;
+            padding-bottom: 0.5rem;
+        }
+
+        /* Lists Styling */
+        .benefits-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .benefits-list li {
+            background: #e8f5f3;
+            margin: 0.5rem 0;
+            padding: 1rem;
+            border-left: 4px solid #4a9b8f;
+            border-radius: 5px;
+        }
+
+        .steps-list {
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .steps-list li {
+            margin: 0.8rem 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        /* Table Styling */
+        .nutrition-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .nutrition-table thead {
+            background: #2c7f7b;
+            color: white;
+        }
+
+        .nutrition-table th,
+        .nutrition-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        .nutrition-table tbody tr:hover {
+            background: #f0f9f8;
+        }
+
+        .nutrition-table th {
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        /* Media Elements */
+        .media-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        figure {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        figure:hover {
+            transform: translateY(-5px);
+        }
+
+        figure img,
+        figure video,
+        figure audio {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        figcaption {
+            padding: 1rem;
+            background: #f8fffe;
+            font-weight: 500;
+            color: #2c7f7b;
+            text-align: center;
+        }
+
+        /* Form Styling */
+        .contact-form {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #2c7f7b;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="date"],
+        input[type="time"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #4a9b8f;
+            box-shadow: 0 0 0 3px rgba(74, 155, 143, 0.1);
+        }
+
+        input:valid {
+            border-color: #28a745;
+        }
+
+        input:invalid:not(:placeholder-shown) {
+            border-color: #dc3545;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 120px;
+        }
+
+        fieldset {
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin: 1rem 0;
+        }
+
+        legend {
+            color: #2c7f7b;
+            font-weight: 600;
+            padding: 0 0.5rem;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .radio-item,
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        input[type="radio"],
+        input[type="checkbox"] {
+            width: auto;
+        }
+
+        .checkbox-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #2c7f7b, #4a9b8f);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            max-width: 200px;
+            margin: 1rem auto 0;
+            display: block;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(44, 127, 123, 0.3);
+        }
+
+        /* Hidden sections */
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: #2c7f7b;
+                flex-direction: column;
+                padding: 1rem 0;
+                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 0.5rem 0;
+                text-align: center;
+            }
+
+            main {
+                padding: 1rem;
+            }
+
+            section {
+                padding: 1.5rem;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .radio-group {
+                flex-direction: column;
+            }
+
+            .media-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nutrition-table {
+                font-size: 0.9rem;
+            }
+
+            .nutrition-table th,
+            .nutrition-table td {
+                padding: 0.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nutrition-table {
+                font-size: 0.8rem;
+            }
+            
+            .nutrition-table th,
+            .nutrition-table td {
+                padding: 0.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Healthy Lifestyle Hub</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#nutrition">Nutrition</a></li>
+                <li><a href="#workouts">Workouts</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="nav-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="section active">
+            <h1>Welcome to Your Healthy Lifestyle Journey</h1>
+            <p>Transform your life with sustainable healthy habits that nourish your body, energize your mind, and elevate your overall well-being. Our comprehensive approach combines nutrition guidance, effective workouts, and community support to help you achieve lasting results.</p>
+
+            <h2>Benefits of Healthy Living</h2>
+            <ul class="benefits-list">
+                <li><strong>Increased Energy Levels:</strong> Feel more vibrant and energetic throughout the day with proper nutrition and regular exercise.</li>
+                <li><strong>Improved Mental Health:</strong> Reduce stress, anxiety, and depression while boosting mood and cognitive function.</li>
+                <li><strong>Better Sleep Quality:</strong> Establish healthy sleep patterns that promote recovery and rejuvenation.</li>
+                <li><strong>Enhanced Immune System:</strong> Strengthen your body's natural defenses against illness and disease.</li>
+                <li><strong>Weight Management:</strong> Achieve and maintain a healthy weight through balanced nutrition and regular physical activity.</li>
+                <li><strong>Reduced Risk of Chronic Diseases:</strong> Lower your risk of heart disease, diabetes, and other lifestyle-related conditions.</li>
+            </ul>
+
+            <h2>Steps to Start Your Fitness Journey</h2>
+            <ol class="steps-list">
+                <li>Set clear, realistic, and measurable health and fitness goals that align with your lifestyle and priorities.</li>
+                <li>Consult with healthcare professionals to assess your current health status and identify any limitations or considerations.</li>
+                <li>Create a balanced meal plan that includes whole foods, adequate protein, healthy fats, and complex carbohydrates.</li>
+                <li>Start with low-impact exercises and gradually increase intensity as your fitness level improves over time.</li>
+                <li>Establish a consistent sleep schedule of 7-9 hours per night to support recovery and overall health.</li>
+                <li>Stay hydrated by drinking water throughout the day and monitoring your intake based on activity level.</li>
+                <li>Track your progress through measurements, photos, and how you feel rather than just focusing on the scale.</li>
+                <li>Build a support system of friends, family, or fitness communities to maintain motivation and accountability.</li>
+            </ol>
+        </section>
+
+        <!-- Nutrition Section -->
+        <section id="nutrition" class="section">
+            <h2>Nutritional Guide</h2>
+            <p>Understanding the nutritional content of your food is crucial for making informed dietary choices. Below is a comparison of common foods to help you plan balanced, nutritious meals.</p>
+
+            <table class="nutrition-table">
+                <thead>
+                    <tr>
+                        <th>Food Item</th>
+                        <th>Calories (per 100g)</th>
+                        <th>Protein (g)</th>
+                        <th>Fat (g)</th>
+                        <th>Carbs (g)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Chicken Breast (skinless)</td>
+                        <td>165</td>
+                        <td>31</td>
+                        <td>3.6</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Salmon (Atlantic)</td>
+                        <td>208</td>
+                        <td>25</td>
+                        <td>11</td>
+                        <td>0</td>
+                    </tr>
+                    <tr>
+                        <td>Brown Rice (cooked)</td>
+                        <td>123</td>
+                        <td>2.6</td>
+                        <td>0.9</td>
+                        <td>25</td>
+                    </tr>
+                    <tr>
+                        <td>Quinoa (cooked)</td>
+                        <td>120</td>
+                        <td>4.4</td>
+                        <td>1.9</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>Sweet Potato</td>
+                        <td>86</td>
+                        <td>1.6</td>
+                        <td>0.1</td>
+                        <td>20</td>
+                    </tr>
+                    <tr>
+                        <td>Broccoli</td>
+                        <td>34</td>
+                        <td>2.8</td>
+                        <td>0.4</td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td>Avocado</td>
+                        <td>160</td>
+                        <td>2</td>
+                        <td>15</td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td>Greek Yogurt (plain)</td>
+                        <td>59</td>
+                        <td>10</td>
+                        <td>0.4</td>
+                        <td>3.6</td>
+                    </tr>
+                    <tr>
+                        <td>Almonds</td>
+                        <td>579</td>
+                        <td>21</td>
+                        <td>50</td>
+                        <td>22</td>
+                    </tr>
+                    <tr>
+                        <td>Blueberries</td>
+                        <td>57</td>
+                        <td>0.7</td>
+                        <td>0.3</td>
+                        <td>14</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!-- Workouts Section -->
+        <section id="workouts" class="section">
+            <h2>Workout Resources</h2>
+            <p>Discover effective exercises and routines that you can do anywhere, anytime. From beginner-friendly movements to guided sessions, we've got you covered.</p>
+
+            <div class="media-grid">
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Person performing push-ups exercise demonstrating proper form">
+                    <figcaption>Perfect Push-Up Form - Build upper body strength with this fundamental exercise</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1566241440091-ec10de8db2e1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Woman performing squats exercise with proper posture">
+                    <figcaption>Proper Squat Technique - Strengthen your legs and glutes with perfect form</figcaption>
+                </figure>
+
+                <figure>
+                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1000&q=80" alt="Person holding plank position showing core strengthening exercise">
+                    <figcaption>Plank Hold - Core strengthening exercise for stability and endurance</figcaption>
+                </figure>
+
+                <figure>
+                    <video controls>
+                        <source src="https://sample-videos.com/zip/10/mp4/SampleVideo_1280x720_1mb.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <figcaption>10-Minute Morning Stretch Routine - Start your day with energy and flexibility</figcaption>
+                </figure>
+
+                <figure>
+                    <audio controls>
+                        <source src="https://www.soundjay.com/misc/sounds/bell-ringing-05.wav" type="audio/wav">
+                        Your browser does not support the audio element.
+                    </audio>
+                    <figcaption>Guided Breathing Exercise - 5-minute mindfulness and relaxation session</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section">
+            <h2>Join Our Community</h2>
+            <p>Ready to transform your lifestyle? Sign up today and get access to personalized workout plans, nutrition guidance, and ongoing support from our community of health enthusiasts.</p>
+
+            <form class="contact-form" novalidate>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="fullName">Full Name *</label>
+                        <input type="text" id="fullName" name="fullName" required 
+                               placeholder="Enter your full name" 
+                               pattern="[A-Za-z\s]{2,50}" 
+                               title="Please enter a valid name (letters and spaces only, 2-50 characters)">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required 
+                               placeholder="your.email@example.com" 
+                               autocomplete="email">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="birthDate">Date of Birth</label>
+                        <input type="date" id="birthDate" name="birthDate" 
+                               max="2010-01-01" min="1940-01-01">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="workoutTime">Preferred Workout Time</label>
+                        <input type="time" id="workoutTime" name="workoutTime">
+                    </div>
+                </div>
+
+                <fieldset>
+                    <legend>Fitness Level *</legend>
+                    <div class="radio-group">
+                        <div class="radio-item">
+                            <input type="radio" id="beginner" name="fitnessLevel" value="beginner" required>
+                            <label for="beginner">Beginner</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="intermediate" name="fitnessLevel" value="intermediate">
+                            <label for="intermediate">Intermediate</label>
+                        </div>
+                        <div class="radio-item">
+                            <input type="radio" id="advanced" name="fitnessLevel" value="advanced">
+                            <label for="advanced">Advanced</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <div class="form-group">
+                    <label for="goals">Your Health & Fitness Goals</label>
+                    <textarea id="goals" name="goals" 
+                              placeholder="Tell us about your specific goals, challenges, and what you hope to achieve..."
+                              minlength="10" maxlength="500"></textarea>
+                </div>
+
+                <fieldset>
+                    <legend>Newsletter Preferences</legend>
+                    <div class="checkbox-group">
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="weeklyTips" name="newsletter" value="weeklyTips">
+                            <label for="weeklyTips">Weekly Fitness Tips</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="healthyRecipes" name="newsletter" value="healthyRecipes">
+                            <label for="healthyRecipes">Healthy Recipes</label>
+                        </div>
+                        <div class="checkbox-item">
+                            <input type="checkbox" id="motivational" name="newsletter" value="motivational">
+                            <label for="motivational">Motivational Emails</label>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <button type="submit" class="submit-btn">Join Now</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const navToggle = document.querySelector('.nav-toggle');
+            const navLinks = document.querySelector('.nav-links');
+            const sections = document.querySelectorAll('.section');
+            const navItems = document.querySelectorAll('.nav-links a');
+
+            // Mobile menu toggle
+            navToggle.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // Section navigation
+            function showSection(targetId) {
+                sections.forEach(section => {
+                    section.classList.remove('active');
+                });
+                
+                const targetSection = document.querySelector(targetId);
+                if (targetSection) {
+                    targetSection.classList.add('active');
+                }
+                
+                // Close mobile menu if open
+                navLinks.classList.remove('active');
+            }
+
+            // Add click listeners to navigation items
+            navItems.forEach(item => {
+                item.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    showSection(targetId);
+                });
+            });
+
+            // Form submission handling
+            const form = document.querySelector('.contact-form');
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Check form validity
+                if (this.checkValidity()) {
+                    alert('Thank you for joining our community! We\'ll be in touch soon with your personalized wellness plan.');
+                    this.reset();
+                } else {
+                    alert('Please fill in all required fields correctly.');
+                }
+            });
+
+            // Real-time validation feedback
+            const inputs = document.querySelectorAll('input[required], textarea[required]');
+            inputs.forEach(input => {
+                input.addEventListener('blur', function() {
+                    if (this.validity.valid) {
+                        this.style.borderColor = '#28a745';
+                    } else if (this.value !== '') {
+                        this.style.borderColor = '#dc3545';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
